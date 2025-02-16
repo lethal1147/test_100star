@@ -24,7 +24,7 @@ export default function DashboardFilters() {
   }, []);
 
   return (
-    <div className="flex space-x-5">
+    <div className="flex flex-col sm:flex-row gap-5">
       <DatePicker
         date={filters.date}
         setDate={(val) => changeFilter(val as Date, "date")}

@@ -100,8 +100,8 @@ export default function BasePieChart({
           data={chartData}
           cx="50%"
           cy="50%"
-          innerRadius={100}
-          outerRadius={120}
+          innerRadius={80}
+          outerRadius={100}
           fill="#8884d8"
           dataKey="value"
           onMouseEnter={(_, index) => setActiveIndex(index)}
