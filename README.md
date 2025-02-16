@@ -20,7 +20,8 @@ This project is a real-time vehicle count display system that provides live upda
 Before running, ensure the following:
 
 - **Node.js** and **npm** installed. (Node.js version 16.x or 18.x recommended).
-- **Server** must be running. Please make sure that you have start the server by using command
+- **Server** Please make sure to start the server using the appropriate command.
+- **Call api** Make an API call to start the interval for generating mock vehicle data every minute. This simulates real-time data coming from the LED signs.
 
 ```bash
 npm run server
@@ -62,3 +63,17 @@ npm run dev
 ```
 
 The application will be available at http://localhost:3000.
+
+6. Make API call to start generating mock vehicle data every one minute:
+
+Using cURL:
+
+```bash
+curl -X GET http://localhost:3000/api/vehicle/generateMockVehicle
+```
+
+Or by POSTMAN:
+
+```bash
+   GET http://localhost:3000/api/vehicle/generateMockVehicle
+```
