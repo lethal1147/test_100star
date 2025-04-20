@@ -46,7 +46,7 @@ export default function InterestDataList() {
       <CardHeader>
         <CardTitle className="font-bold text-xl top-3">ข้อมูลน่าสนใจ</CardTitle>
       </CardHeader>
-      <CardContent className="max-h-44 overflow-y-auto">
+      <CardContent className="max-h-40 overflow-y-auto">
         <ul className="space-y-5">
           {MOCK_INTERESTING_DATA.map((data) => (
             <li className="flex w-full pr-3 justify-between" key={data.name}>

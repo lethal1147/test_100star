@@ -61,7 +61,7 @@ export default function VehicleColorPieChart() {
         <CardTitle className="font-bold text-xl">สียานพาหนะ</CardTitle>
       </CardHeader>
       <CardContent className="flex justify-center items-center">
-        <div className="w-full max-w-[300px] h-[200px] p-3">
+        <div className="w-full max-w-[300px] h-[175px] p-3">
           <Pie options={options} data={data} />
         </div>
       </CardContent>

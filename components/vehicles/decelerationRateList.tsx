@@ -76,13 +76,13 @@ const getBadge = (vehicleSpeed: keyof typeof vehicleSpeedMapper) => {
 
 export default function DecelerationRateList() {
   return (
-    <Card>
-      <CardHeader className="pt-4 pb-0">
+    <Card className="text-xs">
+      <CardHeader className="text-lg pt-4 pb-0">
         <CardTitle>อัตราการชะลอตัว</CardTitle>
       </CardHeader>
       <CardContent>
-        <Table>
-          <TableHeader>
+        <Table className="text-xs">
+          <TableHeader className="h-4">
             <TableRow>
               <TableHead>ช่วงเวลา</TableHead>
               <TableHead>เวลาในการชะลอตัว</TableHead>
@@ -114,7 +114,10 @@ function VehicleSPeedTag({
   color,
 }: Readonly<{ text: string; textColor: string; color: string }>) {
   return (
-    <Badge className={cn("border", color, textColor)} variant="outline">
+    <Badge
+      className={cn("border text-xs py-0.25", color, textColor)}
+      variant="outline"
+    >
       {text}
     </Badge>
   );
