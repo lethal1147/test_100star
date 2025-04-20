@@ -1,5 +1,6 @@
 import HeatMap from "@/components/charts/heatMap";
 import VehicleColorPieChart from "@/components/charts/vehicleColorPieChart";
+import DecelerationRateList from "@/components/vehicles/decelerationRateList";
 import InterestDataList from "@/components/vehicles/interestDataList";
 import React from "react";
 
@@ -23,7 +24,9 @@ export default function AnalyticsPage() {
       <div className="bg-green-600 col-span-3 row-span-4"></div>
 
       {/* Row 4 */}
-      <div className="bg-yellow-300 col-span-4 row-span-2"></div>
+      <div className="col-span-4 row-span-2">
+        <DecelerationRateList />
+      </div>
       <div className="bg-yellow-400 col-span-2 row-span-2"></div>
       {/* The last column is already filled from above */}
     </div>
