@@ -3,6 +3,7 @@ import VehicleColorPieChart from "@/components/charts/vehicleColorPieChart";
 import WeeklyBarChart from "@/components/charts/weeklyBarChart";
 import DecelerationRateList from "@/components/vehicles/decelerationRateList";
 import InterestDataList from "@/components/vehicles/interestDataList";
+import VehiclesTypeChart from "@/components/vehicles/vehiclesTypeChart";
 import React from "react";
 
 export default function AnalyticsPage() {
@@ -24,7 +25,9 @@ export default function AnalyticsPage() {
       <div className="col-span-2 row-span-2">
         <WeeklyBarChart />
       </div>
-      <div className="bg-green-600 col-span-3 row-span-4"></div>
+      <div className="col-span-3 row-span-4">
+        <VehiclesTypeChart />
+      </div>
 
       {/* Row 4 */}
       <div className="col-span-4 row-span-2">
