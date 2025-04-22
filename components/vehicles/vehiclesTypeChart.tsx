@@ -11,6 +11,7 @@ import {
   Filler,
   Tooltip,
   Legend,
+  ChartOptions,
 } from "chart.js";
 
 ChartJS.register(
@@ -42,7 +43,7 @@ const data = {
   ],
 };
 
-const options = {
+const options: ChartOptions<"radar"> = {
   responsive: true,
   scales: {
     r: {

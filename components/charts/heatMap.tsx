@@ -1,5 +1,12 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { cn } from "@/lib/utils";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/tooltip";
 
 const days = [
   "SUNDAY",
@@ -22,39 +29,69 @@ const hours = [
   "22:00",
 ];
 
+const colors = [
+  { value: "0-25%", className: "bg-emerald-100", width: "w-[15%]" },
+  { value: "25-50%", className: "bg-emerald-400", width: "w-[20%]" },
+  { value: "50-75%", className: "bg-emerald-600", width: "w-[30%]" },
+  { value: "75-100%", className: "bg-emerald-800", width: "w-[35%]" },
+];
+
 export default function HeatMap() {
   const data = days.map(() => hours.map(() => Math.floor(Math.random() * 5)));
-  const getColor = (value: number) => {
-    const colors = [
-      "bg-emerald-100",
-      "bg-emerald-200",
-      "bg-emerald-300",
-      "bg-emerald-400",
-      "bg-emerald-500",
-      "bg-emerald-600",
-      "bg-emerald-700",
-    ];
-    return colors[value] || colors[0];
-  };
+  const maxValue = Math.max(...data.flat());
+
+  const formattedData = data.map((row) =>
+    row.map((value) => {
+      const percentage = (value / maxValue) * 100;
+      let level = 1;
+      if (percentage > 75) {
+        level = 4;
+      } else if (percentage > 50) {
+        level = 3;
+      } else if (percentage > 25) {
+        level = 2;
+      }
+
+      return { value, level };
+    })
+  );
+
+  const getColor = (value: number) => colors[value - 1] || colors[0];
+
   return (
     <Card className="h-full p-5">
       <CardHeader>
         <CardTitle className="font-bold text-xl">ฮีทแมพ</CardTitle>
       </CardHeader>
       <CardContent className="px-3 mx-auto">
-        {days.map((day, dayIndex) => (
-          <div key={day} className="flex items-center mb-1">
-            <div className="w-20 text-xs font-medium text-end mr-2">{day}</div>
-            <div className="flex-1 grid grid-cols-9 gap-2">
-              {hours.map((_, hourIndex) => (
-                <div
-                  key={hourIndex}
-                  className={`h-6 ${getColor(data[dayIndex][hourIndex])}`}
-                ></div>
-              ))}
+        <TooltipProvider>
+          {days.map((day, dayIndex) => (
+            <div key={day} className="flex items-center mb-1">
+              <div className="w-20 text-xs font-medium text-end mr-2">
+                {day}
+              </div>
+              <div className="flex-1 grid grid-cols-9 gap-2">
+                {hours.map((_, hourIndex) => (
+                  <Tooltip key={hourIndex}>
+                    <TooltipTrigger>
+                      <div
+                        className={cn(
+                          "h-6",
+                          getColor(formattedData[dayIndex][hourIndex].level)
+                            .className
+                        )}
+                      />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{formattedData[dayIndex][hourIndex].value}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </TooltipProvider>
+
         <div className="flex">
           <div className="w-20 mr-2" />
           <div className="flex-1 grid grid-cols-9 gap-2">
@@ -67,13 +104,12 @@ export default function HeatMap() {
         </div>
         <div className="mt-4 flex items-center justify-end w-full">
           <div className="flex w-11/12 justify-end">
-            <div className="w-full h-3 bg-emerald-100"></div>
-            <div className="w-full h-3 bg-emerald-200"></div>
-            <div className="w-full h-3 bg-emerald-300"></div>
-            <div className="w-full h-3 bg-emerald-400"></div>
-            <div className="w-full h-3 bg-emerald-500"></div>
-            <div className="w-full h-3 bg-emerald-600"></div>
-            <div className="w-full h-3 bg-emerald-700"></div>
+            {colors.map((color) => (
+              <div key={color.className} className={cn("", color.width)}>
+                <div className={cn("w-full h-3", color.className)} />
+                <p className="text-center text-xs">{color.value}</p>
+              </div>
+            ))}
           </div>
         </div>
       </CardContent>

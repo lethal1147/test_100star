@@ -4,6 +4,7 @@ import WeeklyBarChart from "@/components/charts/weeklyBarChart";
 import DecelerationRateList from "@/components/vehicles/decelerationRateList";
 import InterestDataList from "@/components/vehicles/interestDataList";
 import VehiclesTypeChart from "@/components/vehicles/vehiclesTypeChart";
+import VolumeVehicleTimeChart from "@/components/vehicles/volumeVehicleTimeChart";
 import React from "react";
 
 export default function AnalyticsPage() {
@@ -33,7 +34,9 @@ export default function AnalyticsPage() {
       <div className="col-span-4 row-span-2">
         <DecelerationRateList />
       </div>
-      <div className="bg-yellow-400 col-span-2 row-span-2"></div>
+      <div className="col-span-2 row-span-2">
+        <VolumeVehicleTimeChart />
+      </div>
       {/* The last column is already filled from above */}
     </div>
   );
